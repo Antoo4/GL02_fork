@@ -33,10 +33,25 @@ cli
 
 	// search
 	.command('search', 'Free text search on the Questions\' name')
-	.argument('<file>', 'The Vpf file to search')
 	.argument('<needle>', 'The text to look for in the Question\'s names')
 	.action(({ args, options, logger }) => {
+		analyzer = new GIFTParser();
+		analyzer.fakeParse(); //TODO
+		let displayQuestions = []
+		let it =0
 
+		for (const question of analyzer.parsedQuestions) {
+			displayQuestions[it] = question.contains(args.needle)
+			it++
+		}
+		it = 0
+		for (const question of analyzer.parsedQuestions) {
+			if(displayQuestions[it]){
+				console.log(question.toString())
+			}
+			it++
+		}
+		
 	})
 
 cli.run(process.argv.slice(2));

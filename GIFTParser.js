@@ -25,7 +25,7 @@ GIFTParser.prototype.fakeParse = function(){
 	let fake2 = new Question();
 	fake2.id = 2
 	fake2.titre = "Fake Question n°2"
-	fake2.enonce = "This is the fake question n° 2"
+	fake2.enonce = "This is the alternative fake question n° 2"
 	fake2.type = "Choix Multiple (QCM)"
 	fake2.reponses = ["ANS1","ANS2","ANS3","ANS4"]
 
