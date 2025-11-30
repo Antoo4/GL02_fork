@@ -17,11 +17,17 @@ cli
 		analyzer = new GIFTParser();
 		analyzer.fakeParse(); //TODO
 
+
+		let questionExists = false
 		for (const question of analyzer.parsedQuestions) {
 			if (args.id == question.id){
 				console.log(question.toString());
+				questionExists = true
 				break;
 			} 
+		}
+		if(!questionExists){
+			console.log("La question est introuvable.")
 		}
 	})
 
