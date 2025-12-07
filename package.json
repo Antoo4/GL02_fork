@@ -1,0 +1,24 @@
+{
+  "name": "gl02_javaholics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "caporalCli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gl02_javaholics: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@github.com/Yesmine001/GL02_JAVAHOLICS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Yesmine001/GL02_JAVAHOLICS/issues"
+  },
+  "homepage": "https://github.com/Yesmine001/GL02_JAVAHOLICS#readme",
+  "dependencies": {
+    "@caporal/core": "^2.0.7"
+  }
+}
