@@ -1,9 +1,11 @@
-var Question = function (id, titre, type, enonce, reponses) {
+var Question = function (id, titre, format, type, enonce, reponses, bonnesReponses) {
 	this.id = id
 	this.titre = titre;
+	this.format = format;
 	this.enonce = enonce;
 	this.type = type;
 	this.reponses = [].concat(reponses);
+	this.bonnesReponses = [].concat(bonnesReponses);
 }
 
 
@@ -11,10 +13,15 @@ var Question = function (id, titre, type, enonce, reponses) {
 Question.prototype.toString = function () {
 	let display = ""
 	display += "Titre: " + this.titre + '\r\n'
-	display += "Description: " + this.enonce + '\r\n'
+	display += "Format: " + this.format + '\r\n'
+	display += "Enonce: " + this.enonce + '\r\n'
 	display += "Type: " + this.type + '\r\n'
 	display += "Réponses possibles: " + '\r\n'
 	for (reponse of this.reponses) {
+		display += "\t" + reponse + '\r\n'
+	}
+	display += "Bonnes réponses: " + '\r\n'
+	for (reponse of this.bonnesReponses) {
 		display += "\t" + reponse + '\r\n'
 	}
 	return display

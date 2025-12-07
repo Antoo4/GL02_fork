@@ -54,4 +54,21 @@ cli
 		
 	})
 
+	// test
+	.command('test', 'Test')
+	.argument('<file>', 'The file\'s name')
+	.action(({ args, options, logger }) => {
+
+		fs.readFile(args.file, 'utf8', function (err, data) {
+			if (err) {
+				return looger.warn(err);
+			}
+
+			var analyzer = new GIFTParser();
+			analyzer.parse(data);
+			console.log(analyzer.parsedQuestions);
+		});
+		
+	})
+
 cli.run(process.argv.slice(2));
