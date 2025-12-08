@@ -1,21 +1,21 @@
 // Question.js
-var Question = function (id, titre, type, enonce, reponses) {
+function Question(id, titre, type, enonce, reponses) {
     this.id = id;
     this.titre = titre;
     this.enonce = enonce;
     this.type = type;
-    // reponses = [{ text: '4', correct: true, weight: 100 }, ...]
+    // reponses = [{ text, correct, weight }]
     this.reponses = [].concat(reponses || []);
-};
+}
 
 Question.prototype.toString = function () {
     let display = "";
-    display += "Titre: " + this.titre + '\r\n';
-    display += "Description: " + this.enonce + '\r\n';
-    display += "Type: " + this.type + '\r\n';
-    display += "Réponses possibles: " + '\r\n';
+    display += "Titre: " + this.titre + "\r\n";
+    display += "Description: " + this.enonce + "\r\n";
+    display += "Type: " + this.type + "\r\n";
+    display += "Réponses possibles:\r\n";
     for (const r of this.reponses) {
-        display += "\t" + r.text + '\r\n';
+        display += "\t" + r.text + "\r\n";
     }
     return display;
 };
