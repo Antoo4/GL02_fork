@@ -1,16 +1,25 @@
 {
-  "name": "vpf-parser-cli",
+  "name": "gl02_javaholics",
   "version": "1.0.0",
-  "description": "Offer an interface for a recursive descent parser implemented in Javascript for reading and processing the Verbose POI Format (VPF). This format allows to describe any list of Point of Interest (POI) with an associated list of evaluation. The files are in text format and should respect the following grammar.",
+  "description": "",
   "main": "caporalCli.js",
   "scripts": {
     "test": "jasmine"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gl02_javaholics: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@github.com/Yesmine001/GL02_JAVAHOLICS.git"
+  },
   "keywords": [],
-  "author": "matthieu.tixier@utt.fr",
-  "license": "MIT/BSD",
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Yesmine001/GL02_JAVAHOLICS/issues"
+  },
+  "homepage": "https://github.com/Yesmine001/GL02_JAVAHOLICS#readme",
   "dependencies": {
-    "@caporal/core": "^3.0.2",
+    "@caporal/core": "^2.0.7",
     "colors": "^1.4.0",
     "vega": "^5.17.0",
     "vega-lite": "^4.17.0"
