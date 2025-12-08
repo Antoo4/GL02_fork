@@ -1,43 +1,35 @@
-var Question = function (id, titre, type, enonce, reponses) {
-	this.id = id
-	this.titre = titre;
-	this.enonce = enonce;
-	this.type = type;
-	this.reponses = [].concat(reponses);
-}
 
+class Question {
+    constructor(id, titre, format, type, enonce, reponses = [], bonnesReponses = []) {
+        this.id = id;
+        this.titre = titre;
+        this.format = format;
+        this.enonce = enonce;
+        this.type = type;
+        this.reponses = Array.isArray(reponses) ? reponses : [];
+        this.bonnesReponses = Array.isArray(bonnesReponses) ? bonnesReponses : [];
+    }
 
+    toString() {
+        let display = "";
+        display += "ID: " + this.id + "\n";
+        display += "Titre: " + this.titre + "\n";
+        display += "Format: " + this.format + "\n";
+        display += "Enoncé: " + this.enonce + "\n";
+        display += "Type: " + this.type + "\n";
+        display += "Réponses possibles:\n";
+        this.reponses.forEach(r => display += "  - " + r + "\n");
+        display += "Bonnes réponses:\n";
+        this.bonnesReponses.forEach(r => display += "  * " + r + "\n");
+        return display;
+    }
 
-Question.prototype.toString = function () {
-	let display = ""
-	display += "Titre: " + this.titre + '\r\n'
-	display += "Description: " + this.enonce + '\r\n'
-	display += "Type: " + this.type + '\r\n'
-	display += "Réponses possibles: " + '\r\n'
-	for (reponse of this.reponses) {
-		display += "\t" + reponse + '\r\n'
-	}
-	return display
-}
-
-
-Question.prototype.contains = function (needle) {
-	let found = false
-	if (this.titre.includes(needle)) {
-		found = true
-	}
-	if (this.enonce.includes(needle)) {
-		found = true
-	}
-	if (this.type.includes(needle)) {
-		found = true
-	}
-	for (reponse of this.reponses) {
-		if (reponse.includes(needle)) {
-			found = true
-		}
-	}
-	return found
+    contains(needle) {
+        if (this.titre.includes(needle)) return true;
+        if (this.enonce.includes(needle)) return true;
+        if (this.type.includes(needle)) return true;
+        return this.reponses.some(r => r.includes(needle));
+    }
 }
 
 module.exports = Question;
