@@ -203,30 +203,6 @@ Q2 : La Terre est plate? | Réponse : Vrai -> Incorrect (Bonne réponse : 'Faux'
 
 ---
 
-#### 6. **Profiler**
-
-Permet de donner le nombre de questions dans un fichier GIFT et génère un histogramme des questions, en fonction de leur type.
-
-```bash
-node caporalCli.js profiler <fichier.gift>
-```
-
-#### 7. **Comparer des profils**
-
-Permet de comparer un fichier de questions avec plusieurs autres. Le programme renvoie deux histogramme, représentant les pourcentages de questions en fonction de leur type, pour le fichier choisi ainsi qu'une moyenne pour les fichiers de comparaisons.
-
-```bash
-node caporalCli.js comparerProfils <fichier.gift> <fichierRef1.gift> <fichierRef2.gift> <...>
-```
-
-#### 8. **Créer un fichier VCard**
-
-Permet de créer une fiche d'identification au format VCard.
-
-```bash
-node caporalCli.js createVCard
-```
-
 ## ✨ Fonctionnalités
 
 ### Implémentées
@@ -236,7 +212,7 @@ node caporalCli.js createVCard
 | EF01 | Rechercher des questions | Implémenté | `caporalCli.js` |
 | EF02 | Visualiser une question | Implémenté | `caporalCli.js` |
 | EF03 | Sélectionner des questions | Implémenté | `src/services/selectionner.js` |
-| EF05 | Générer fichier VCard | Implémenté | `caporalCli.js` |
+| EF05 | Générer fichier VCard | Implémenté | `caporalCli(1).js` |
 | EF06 | Simuler un examen | Implémenté | `SimulateExam.js` |
 | EF07 | Indexer les questions | Implémenté | `GIFTParser.js` |
 | EF04 | Générer fichier GIFT | Implémenté | Intégration avec EF03 |
@@ -343,35 +319,6 @@ Ce fichier est idéal pour :
 - Tester la fonction de simulation (EF06)
 - Voir des exemples de syntaxe GIFT avancée
 - Comprendre le format HTML dans GIFT
-
----
-
-### Fichiers principaux
-
-| Fichier | Description |
-|---------|-------------|
-| `Question.js` | Classe représentant une question avec ses attributs (id, titre, énoncé, type, réponses) |
-| `GIFTParser.js` | Parser pour lire et analyser les fichiers au format GIFT |
-| `GIFTParser(2).js` | Version avancée avec tokenisation et support de tous les types de questions |
-| `SimulateExam.js` | Module de simulation d'examen interactif (EF06) |
-| `caporalCli.js` | Point d'entrée principal avec commandes `display` et `search` |
-| `caporalCli(1).js` | Commande `createVCard` pour générer le profil enseignant |
-| `src/services/selectionner.js` | Module de sélection de questions (EF03) |
-| `spec/selection.spec.js` | Tests unitaires pour la sélection |
-| `data/1_sample.gift` | Fichier GIFT d'exemple pour tester la simulation |
-
----
-
-## ⚠️ Écarts au cahier des charges
-
-### Différences et adaptations
-
-#### 1. **Framework CLI : Caporal au lieu de Commander**
-
-**Cahier des charges :** Non spécifié  
-**Implémentation :** Utilisation de `@caporal/core`
-
-**Justification :** Caporal offre une meilleure gestion des commandes complexes et une syntaxe plus intuitive pour notre cas d'usage. Les fonctionnalités restent identiques.
 
 #### 2. **Structure de la classe Question**
 
