@@ -172,7 +172,7 @@ cli
 
 	})
 
-	//EF3
+	//EF5
 	.command('createVCard', 'create VCard File')
 	.action(async ({ logger }) => {
 
