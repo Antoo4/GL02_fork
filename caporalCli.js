@@ -34,14 +34,16 @@ cli
 //EF03
 //Selectionner
 .command('selectionner', 'Sélectionner des questions depuis un fichier GIFT')
-  .argument('<file>', 'Le fichier GIFT contenant les questions')
-  .action(async ({ args, logger }) => {
-      try {
-          await selectQuestionsFromFile(args.file);
-      } catch (err) {
-          logger.error("Erreur lors de la sélection :", err.message || err);
-      }
-  })
+.argument('<input>', 'Le fichier GIFT contenant les questions')
+.argument('<output>', 'Le fichier GIFT à créer avec les questions sélectionnées')
+.action(async ({ args, logger }) => {
+    try {
+        await selectQuestionsFromFile(args.input, args.output);
+    } catch (err) {
+        logger.error("Erreur lors de la sélection :", err.message || err);
+    }
+})
+
 
 
 

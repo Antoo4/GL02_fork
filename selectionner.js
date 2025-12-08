@@ -1,20 +1,81 @@
+// selectionner.js
 const fs = require('fs');
 const readline = require('readline');
-const GIFTParser = require('./GIFTParser'); // your parser
-const { generateGiftFile } = require('./GiftGenerator'); // your generator
 
-async function selectQuestionsFromFile(giftPath) {
-    if (!fs.existsSync(giftPath)) {
-        console.error("Erreur : fichier introuvable :", giftPath);
+/**
+ * Writes an array of questions to a GIFT file
+ * @param {Array} questions - List of questions objects {titre, enonce, bonnesReponses}
+ * @param {string} filename - Output filename
+ */
+function writeGiftFile(questions, filename) {
+    const lines = [];
+
+    questions.forEach(q => {
+        const titre = q.titre ? `::${q.titre}:: ` : '';
+        lines.push(titre + q.enonce);
+        lines.push('{');
+        const correct = q.bonnesReponses[0]; // 'T' or 'F'
+        const wrong = correct === 'T' ? 'F' : 'T';
+        lines.push(`=${correct}`);
+        lines.push(`~${wrong}`);
+        lines.push('}\n');
+    });
+
+    try {
+        fs.writeFileSync(filename, lines.join('\n'), 'utf8');
+    } catch (err) {
+        console.error("Erreur : impossible d'écrire le fichier.", err.message);
+        return;
+    }
+}
+
+/**
+ * Parses a simple GIFT file with T/F questions
+ * @param {string} data - Content of the GIFT file
+ * @returns {Array} questions
+ */
+function parseGiftFile(data) {
+    const lines = data.split(/\r?\n/);
+    const questions = [];
+    let currentQ = null;
+
+    lines.forEach(line => {
+        line = line.trim();
+        if (!line) return;
+
+        if (line.startsWith("::")) {
+            currentQ = { titre: line.split("::")[1] || "Sans titre", enonce: "", bonnesReponses: [] };
+        } else if (line.startsWith("{")) {
+            // start of answers
+        } else if (line.startsWith("=")) {
+            if (currentQ) currentQ.bonnesReponses.push(line.replace("=", "").trim());
+        } else if (line.startsWith("~")) {
+            // ignore wrong answer
+        } else {
+            if (currentQ) currentQ.enonce = line;
+            questions.push(currentQ);
+            currentQ = null;
+        }
+    });
+
+    return questions;
+}
+
+/**
+ * Interactive question selection
+ * @param {string} inputFile - Existing GIFT file
+ * @param {string} outputFile - New GIFT file with selected questions
+ */
+async function selectQuestionsFromFile(inputFile, outputFile) {
+    if (!fs.existsSync(inputFile)) {
+        console.error("Erreur : fichier introuvable :", inputFile);
         return;
     }
 
-    const data = fs.readFileSync(giftPath, 'utf8');
-    const parser = new GIFTParser();
-    parser.parse(data);
-    const questions = parser.parsedQuestions;
+    const data = fs.readFileSync(inputFile, 'utf8');
+    const questions = parseGiftFile(data);
 
-    if (!questions || questions.length === 0) {
+    if (!questions.length) {
         console.log("Le fichier est vide ou ne contient aucune question.");
         return;
     }
@@ -25,7 +86,7 @@ async function selectQuestionsFromFile(giftPath) {
     async function askQuestion() {
         console.log("\nListe des questions disponibles :");
         questions.forEach((q, idx) => {
-            console.log(`  ${idx + 1}) ${q.titre || 'Sans titre'} - ${q.enonce}`);
+            console.log(`  ${idx + 1}) ${q.titre} - ${q.enonce}`);
         });
 
         const questionId = await new Promise(resolve => {
@@ -69,13 +130,8 @@ async function selectQuestionsFromFile(giftPath) {
         }
 
         const filteredQuestions = selected.map(idx => questions[idx]);
-
-        try {
-            generateGiftFile(filteredQuestions, giftPath); 
-            console.log(`Fichier GIFT mis à jour : ${giftPath}`);
-        } catch (err) {
-            console.error("Erreur lors de la mise à jour du fichier :", err.message || err);
-        }
+        writeGiftFile(filteredQuestions, outputFile);
+        console.log(`Fichier GIFT créé avec succès : ${outputFile}`);
     }
 
     askQuestion();
