@@ -24,12 +24,6 @@ class Question {
         return display;
     }
 
-    contains(needle) {
-        if (this.titre.includes(needle)) return true;
-        if (this.enonce.includes(needle)) return true;
-        if (this.type.includes(needle)) return true;
-        return this.reponses.some(r => r.includes(needle));
-    }
 }
 
 module.exports = Question;
