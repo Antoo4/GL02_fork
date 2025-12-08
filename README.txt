@@ -16,7 +16,10 @@ $ node caporalCli.js <command> fileToParse [-hts]
 -t or --showTokenize :	 display the tokenization result 
 -s or --showSymbols :	 display each step of the analysis
 
+$node caporalCli.js generate <filename> to generate an exam
 
+
+$node caporalCli.js simulaate <filename> to simulate an exam
 ### Version : 
 
 

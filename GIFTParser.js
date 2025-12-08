@@ -250,6 +250,16 @@ GIFTParser.prototype.profile = function () {
 	});
 	return hist;
 }
+// Add this at the bottom of GIFTParser.js
+GIFTParser.prototype.fakeParse = function(filePath = "1_sample.gift") {
+    const fs = require('fs');
+    try {
+        const data = fs.readFileSync(filePath, 'utf8');
+        this.parse(data); // ✅ call the real parser
+    } catch (err) {
+        console.error("Erreur lors de la lecture du fichier :", err.message);
+    }
+};
 
 
 module.exports = GIFTParser;

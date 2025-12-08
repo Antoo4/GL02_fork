@@ -5,6 +5,8 @@ const readline = require("readline");
 const vg = require('vega');
 const vegalite = require('vega-lite');
 const cli = require("@caporal/core").default;
+const { simulateExamFromFile } = require('./SimulateExam');
+const { generateGiftFile } = require('./GiftGenerator.js');
 
 cli
 	.version('gift-parser-cli')
@@ -29,6 +31,26 @@ cli
 			console.log("La question est introuvable.")
 		}
 	})
+
+	//EF04
+	//Generate
+ .command('generate', 'Generate a GIFT file from predefined questions')
+    .argument('<file>', 'Output GIFT filename')
+    .action(({ args, logger }) => {
+        try {
+            const filename = generateGiftFile(args.file);
+            logger.info(`Fichier GIFT généré avec succès : ${filename}`);
+        } catch (err) {
+            logger.error("Erreur lors de la génération du fichier GIFT : " + (err.message || err));
+        }
+    })
+//EF06
+	//simulate 
+	.command('simulate', 'Simulate an exam from a GIFT file')
+    .argument('<file>', 'The GIFT file to simulate')
+    .action(async ({ args, logger }) => {
+        await simulateExamFromFile(args.file);
+    })
 
 	// search
 	.command('search', 'Free text search on the Questions\' name')

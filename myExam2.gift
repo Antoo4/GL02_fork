@@ -1,0 +1,47 @@
+::Q1 Basic JS:: JavaScript is a statically typed language.
+{
+=F
+~T
+}
+
+::Q2 HTML:: The <title> tag defines the title of a webpage.
+{
+=T
+~F
+}
+
+::Q3 CSS:: CSS stands for Cascading Style Sheets.
+{
+=T
+~F
+}
+
+::Q4 JS Arrays:: In JavaScript, arrays are fixed in size.
+{
+=F
+~T
+}
+
+::Q5 DOM:: The DOM represents the HTML elements of a webpage.
+{
+=T
+~F
+}
+
+::Q6 HTTP:: HTTP stands for HyperText Transfer Protocol.
+{
+=T
+~F
+}
+
+::Q7 JS Functions:: A JavaScript function can return multiple values directly.
+{
+=F
+~T
+}
+
+::Q8 HTML Forms:: The <input> element can have a type='email'.
+{
+=T
+~F
+}
