@@ -10,27 +10,37 @@ var GIFTParser = function(sTokenize, sParsedSymb){
 	this.errorCount = 0;
 }
 
-GIFTParser.prototype.fakeParse = function(){
+// Dans GIFTParser.prototype.fakeParse
+let fake = new Question(
+    1,
+    "Fake Question n°1",
+    "Choix Multiple (QCM)",
+    "This is the fake question n° 1",
+    [
+        { text: "ANS1", correct: true,  weight: 100 },
+        { text: "ANS2", correct: false, weight: 0 },
+        { text: "ANS3", correct: false, weight: 0 },
+        { text: "ANS4", correct: false, weight: 0 },
+    ]
+);
 
-	//TODO
-	let fake = new Question();
-	fake.id = 1
-	fake.titre = "Fake Question n°1"
-	fake.enonce = "This is the fake question n° 1"
-	fake.type = "Choix Multiple (QCM)"
-	fake.reponses = ["ANS1","ANS2","ANS3","ANS4"]
+this.parsedQuestions.push(fake);
 
-	this.parsedQuestions.push(fake)
+let fake2 = new Question(
+    2,
+    "Fake Question n°2",
+    "Choix Multiple (QCM)",
+    "This is the alternative fake question n° 2",
+    [
+        { text: "ANS1", correct: false, weight: 0 },
+        { text: "ANS2", correct: true,  weight: 100 },
+        { text: "ANS3", correct: false, weight: 0 },
+        { text: "ANS4", correct: false, weight: 0 },
+    ]
+);
 
-	let fake2 = new Question();
-	fake2.id = 2
-	fake2.titre = "Fake Question n°2"
-	fake2.enonce = "This is the alternative fake question n° 2"
-	fake2.type = "Choix Multiple (QCM)"
-	fake2.reponses = ["ANS1","ANS2","ANS3","ANS4"]
+this.parsedQuestions.push(fake2);
 
-	this.parsedQuestions.push(fake2)
-}
 
 
 module.exports = GIFTParser;
