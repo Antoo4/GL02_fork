@@ -7,7 +7,7 @@ const vegalite = require('vega-lite');
 const cli = require("@caporal/core").default;
 const { simulateExamFromFile } = require('./SimulateExam');
 const { generateGiftFile } = require('./GiftGenerator.js');
-
+const {selectQuestionsFromFile}=require('./selectionner.js')
 cli
 	.version('gift-parser-cli')
 	.version('0.07')
@@ -31,6 +31,19 @@ cli
 			console.log("La question est introuvable.")
 		}
 	})
+//EF03
+//Selectionner
+.command('selectionner', 'Sélectionner des questions depuis un fichier GIFT')
+  .argument('<file>', 'Le fichier GIFT contenant les questions')
+  .action(async ({ args, logger }) => {
+      try {
+          await selectQuestionsFromFile(args.file);
+      } catch (err) {
+          logger.error("Erreur lors de la sélection :", err.message || err);
+      }
+  })
+
+
 
 	//EF04
 	//Generate
