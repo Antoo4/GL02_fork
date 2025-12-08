@@ -1,4 +1,4 @@
-::Q1 Basic JS:: JavaScript is a statically typed language.
+::Q1 JS:: JavaScript is a statically typed language.
 {
 =F
 ~T
@@ -41,6 +41,138 @@
 }
 
 ::Q8 HTML Forms:: The <input> element can have a type='email'.
+{
+=T
+~F
+}
+
+::Q9 CSS Selectors:: The ID selector in CSS uses a '.' symbol.
+{
+=F
+~T
+}
+
+::Q10 JS Loops:: The 'for' loop in JavaScript can iterate over arrays.
+{
+=T
+~F
+}
+
+::Q11 HTML Elements:: The <footer> element represents the main content of a webpage.
+{
+=F
+~T
+}
+
+::Q12 JS Variables:: 'let' variables can be redeclared in the same scope.
+{
+=F
+~T
+}
+
+::Q13 CSS Units:: The 'em' unit is relative to the font-size of the parent.
+{
+=T
+~F
+}
+
+::Q14 HTML Forms:: The <form> element can contain input elements.
+{
+=T
+~F
+}
+
+::Q15 JS Functions:: Arrow functions bind their own 'this' value.
+{
+=F
+~T
+}
+
+::Q16 HTTP:: HTTPS is the secure version of HTTP.
+{
+=T
+~F
+}
+
+::Q17 CSS:: Flexbox is used to create flexible layouts.
+{
+=T
+~F
+}
+
+::Q18 HTML:: The <head> element contains the content displayed in the browser.
+{
+=F
+~T
+}
+
+::Q19 JS Objects:: Objects in JavaScript can store key-value pairs.
+{
+=T
+~F
+}
+
+::Q20 CSS:: The 'position: absolute' property positions relative to the nearest positioned ancestor.
+{
+=T
+~F
+}
+
+::Q21 HTML:: The <nav> element is used for navigation links.
+{
+=T
+~F
+}
+
+::Q22 JS Arrays:: The 'push' method removes an element from the end of an array.
+{
+=F
+~T
+}
+
+::Q23 CSS:: The 'z-index' property controls stacking order.
+{
+=T
+~F
+}
+
+::Q24 JS:: The 'typeof' operator returns the type of a variable.
+{
+=T
+~F
+}
+
+::Q25 HTML:: The <section> element represents a thematic grouping of content.
+{
+=T
+~F
+}
+
+::Q26 JS Loops:: The 'while' loop executes at least once before checking the condition.
+{
+=F
+~T
+}
+
+::Q27 CSS:: The 'display: none' property hides an element and removes it from the layout.
+{
+=T
+~F
+}
+
+::Q28 HTML:: The <article> element is intended for self-contained content.
+{
+=T
+~F
+}
+
+::Q29 JS:: The 'const' keyword allows reassignment of the variable.
+{
+=F
+~T
+}
+
+::Q30 CSS:: The 'opacity' property can make an element partially transparent.
 {
 =T
 ~F
