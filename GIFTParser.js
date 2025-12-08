@@ -196,7 +196,6 @@ GIFTParser.prototype.contenuQuestion = function(input) {
 					bonnesReponses[bonnesReponses.indexOf(elem)] = newElem;
 				}
 			});
-			console.log(bonnesReponses);
 			reponses = reponses.split('=');
 			reponses.shift();
 			reponses.forEach(elem => {
@@ -239,6 +238,17 @@ GIFTParser.prototype.contenuQuestion = function(input) {
 
 	return {type, texte, reponses, bonnesReponses}
 
+}
+
+GIFTParser.prototype.profile = function () {
+	let hist = {}
+	this.parsedQuestions.forEach(question => {
+		if (!hist[question.type]) {
+			hist[question.type] = 0;
+		}
+		hist[question.type] += 1;
+	});
+	return hist;
 }
 
 
