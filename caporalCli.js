@@ -2,8 +2,8 @@ const fs = require('fs');
 const colors = require('colors');
 const GIFTParser = require('./GIFTParser.js');
 const readline = require("readline");
-// vega et vega-lite seront chargés dynamiquement si nécessaire
-let vg, vegalite;
+const vg = require('vega');
+const vegalite = require('vega-lite');
 const cli = require("@caporal/core").default;
 const { simulateExamFromFile } = require('./SimulateExam');
 const { generateGiftFile } = require('./GiftGenerator.js');
