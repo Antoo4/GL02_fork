@@ -58,7 +58,6 @@ npm --version
 
 ```bash
 git clone https://github.com/votre-equipe/projet-gift.git
-cd projet-gift
 ```
 
 2. **Installer les dépendances**
@@ -158,12 +157,12 @@ Le programme vous demandera interactivement :
 Permet de passer un examen interactif dans le terminal et obtenir un bilan détaillé.
 
 ```bash
-node SimulateExam.js <fichier.gift>
+node caporalCli.js simulateExamFromFile <fichier.gift>
 ```
 
 **Exemple :**
 ```bash
-node SimulateExam.js data/1_sample.gift
+node caporalCli.js simulateExamFromFile data/1_sample.gift
 ```
 
 **Déroulement :**
@@ -224,12 +223,6 @@ Q2 : La Terre est plate? | Réponse : Vrai -> Incorrect (Bonne réponse : 'Faux'
 ## Tests
 
 Le projet utilise **Jasmine** comme framework de tests.
-
-### Lancer tous les tests
-
-```bash
-npm test
-```
 
 ### Lancer un fichier de test spécifique
 
