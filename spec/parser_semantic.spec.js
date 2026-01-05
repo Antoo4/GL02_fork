@@ -3,7 +3,7 @@
 
 const GIFTParser = require('../GIFTParser');
 const Question = require('../Question');
-const { selectionnerQuestions } = require('../src/services/selectionner');
+const { selectionnerQuestions } = require('../selectionner');
 const { generateGiftFile } = require('../GiftGenerator');
 const fs = require('fs');
 
