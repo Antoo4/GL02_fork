@@ -19,10 +19,10 @@
   },
   "homepage": "https://github.com/Yesmine001/GL02_JAVAHOLICS#readme",
   "dependencies": {
-    "@caporal/core": "^2.0.7",
+    "@caporal/core": "^3.0.2",
     "colors": "^1.4.0",
-    "vega": "^6.2.0",
-    "vega-lite": "^6.4.1"
+    "vega": "^5.33.0",
+    "vega-lite": "^4.17.0"
   },
   "devDependencies": {
     "jasmine": "^3.6.3"
