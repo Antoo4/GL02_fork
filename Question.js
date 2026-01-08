@@ -24,6 +24,27 @@ class Question {
         return display;
     }
 
+    contains(needle) {
+        const searchText = needle.toLowerCase();
+        
+        // Recherche dans le titre
+        if (this.titre && this.titre.toLowerCase().includes(searchText)) {
+            return true;
+        }
+        
+        // Recherche dans l'énoncé
+        if (this.enonce && this.enonce.toLowerCase().includes(searchText)) {
+            return true;
+        }
+        
+        // Recherche dans les réponses
+        if (this.reponses && this.reponses.some(r => r.toLowerCase().includes(searchText))) {
+            return true;
+        }
+        
+        return false;
+    }
+
 }
 
 module.exports = Question;
