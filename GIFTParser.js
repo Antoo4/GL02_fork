@@ -252,13 +252,20 @@ GIFTParser.prototype.profile = function () {
 }
 // Add this at the bottom of GIFTParser.js
 GIFTParser.prototype.fakeParse = function(filePath = "1_sample.gift") {
-    const fs = require('fs');
-    try {
-        const data = fs.readFileSync(filePath, 'utf8');
-        this.parse(data); // ✅ call the real parser
-    } catch (err) {
-        console.error("Erreur lors de la lecture du fichier :", err.message);
-    }
+	const fs = require('fs');
+	const path = require('path');
+
+	// Make the fixture path resilient to the current working directory
+	const resolvedPath = path.isAbsolute(filePath)
+		? filePath
+		: path.join(__dirname, filePath);
+
+	try {
+		const data = fs.readFileSync(resolvedPath, 'utf8');
+		this.parse(data); // ✅ call the real parser
+	} catch (err) {
+		console.error("Erreur lors de la lecture du fichier :", err.message);
+	}
 };
 
 
