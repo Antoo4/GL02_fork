@@ -1,43 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
-
-/**
- * Parse a simple True/False GIFT file
- */
-class GIFTParser {
-    constructor() {
-        this.parsedQuestions = [];
-    }
-
-    parse(data) {
-        const lines = data.split(/\r?\n/);
-        let current = null;
-
-        lines.forEach(line => {
-            line = line.trim();
-            if (!line) return;
-
-            // Question title + enonce
-            const titleMatch = line.match(/^::(.*?)::\s*(.*)$/);
-            if (titleMatch) {
-                if (current) this.parsedQuestions.push(current);
-                current = {
-                    titre: titleMatch[1],
-                    enonce: titleMatch[2],
-                    reponses: []
-                };
-            } else if (line.startsWith("{") || line.startsWith("}")) {
-                // ignore braces
-            } else if (line.startsWith("=") || line.startsWith("~")) {
-                const correct = line.startsWith("=");
-                const text = line.slice(1).trim();
-                current.reponses.push({ text, correct });
-            }
-        });
-
-        if (current) this.parsedQuestions.push(current);
-    }
-}
+const GIFTParser = require('./GIFTParser.js');
 
 /**
  * Simulate an exam from a GIFT file
@@ -82,7 +45,7 @@ async function simulateExamFromFile(giftPath) {
 
         // show options
         q.reponses.forEach((r, i) => {
-            console.log(`  ${i + 1}) ${r.text}`);
+            console.log(`  ${i + 1}) ${r}`);
         });
 
         rl.question("Votre réponse (numéro) : ", answer => {
@@ -93,16 +56,21 @@ async function simulateExamFromFile(giftPath) {
                 return;
             }
 
-            const selected = q.reponses[index];
-            const goodAnswer = q.reponses.find(r => r.correct);
+            const selectedAnswer = q.reponses[index];
+            const selectedCorrect = q.bonnesReponses[index] === 1;
+            const correctAnswer = q.reponses[q.bonnesReponses.findIndex(b => b === 1)];
+            
             details.push({
                 question: q.enonce,
-                user: selected.text,
-                correct: selected.correct,
-                good: goodAnswer.text
+                selectedAnswer: selectedAnswer,
+                isCorrect: selectedCorrect,
+                correctAnswer: correctAnswer,
             });
 
-            if (selected.correct) correctCount++;
+            if (selectedCorrect) {
+                correctCount++;
+            }
+
             currentIndex++;
             askQuestion();
         });
@@ -115,8 +83,9 @@ async function simulateExamFromFile(giftPath) {
         console.log("Réponses incorrectes :", questions.length - correctCount);
         console.log("\nDétail :");
         details.forEach((d, i) => {
-            const status = d.correct ? "Correct" : "Incorrect";
-            console.log(`Q${i + 1} : ${d.question} | Votre réponse : '${d.user}' -> ${status} (Bonne réponse : '${d.good}')`);
+            const status = d.isCorrect ? "Correct" : "Incorrect";
+            // Montre la bonne réponse si incorrect
+            console.log(`Q${i + 1} : ${d.question} | Votre réponse : '${d.selectedAnswer}' -> ${status} ${!d.isCorrect ? ` (Bonne réponse : '${d.correctAnswer}')` : ''}`);
         });
         console.log("--------------------------------------------------\n");
     }
