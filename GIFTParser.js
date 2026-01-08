@@ -99,27 +99,40 @@ GIFTParser.prototype.categorie = function(input){
 
 // <question> = “::” [texte] “::” [format] texte (“{“ vrai_faux / multiple / courte / appariement / numerique / composition ”}”)
 GIFTParser.prototype.question = function(input){
-	let matched = input.match(/::.{1,}::/);
-	if (matched) {
-		let titre = matched[0].split('::').join('');
-		let format = 'sansformat';
-		let contenu = {}
-		matched = input.match(/\[.{1,}\]/);
-		if (matched) {
-			format = matched[0].split(/\[|\]/).join('');
-			contenu = this.contenuQuestion(input);
-		} else {
-			contenu = this.contenuQuestion(input);
-		}
 
-		this.index += 1;
-		let newQuestion = new Question(this.index, titre, format, contenu.type, contenu.texte, contenu.reponses, contenu.bonnesReponses);
-		this.parsedQuestions.push(newQuestion);
-	}
+	let titre = '';
+    let format = 'sansformat';
+
+	// On cherche ::titre:: au début de la chaine
+	let matched = input.match(/^::(.*?)::/);
+    if (matched) {
+        titre = matched[1].trim();
+        // On retire le titre de l'input pour ne traiter que le reste ensuite
+        input = input.replace(matched[0], '');
+    }
+
+	// On cherche [format] au début de la chaine
+    matched = input.match(/^\[(.*?)\]/);
+    if (matched) {
+        format = matched[1];
+        // On retire le format de l'input
+        input = input.replace(matched[0], '');
+    }
+
+	// On enlève les espaces au début et à la fin
+	input = input.trim();
+	let contenu = this.contenuQuestion(input);
+	this.index += 1;
+
+	let newQuestion = new Question(this.index, titre, format, contenu.type, contenu.texte, contenu.reponses, contenu.bonnesReponses);
+	this.parsedQuestions.push(newQuestion);
 }
 
+
+
 GIFTParser.prototype.contenuQuestion = function(input) {
-	let texte = input.match(/::(?!.*::)[\s\S]*$/)[0];
+
+	let texte = input;
 	if (input.match(/\[.{1,}\]/)) { // If there is a format
 		texte = input.match(/][\s\S]*$/)[0];
 	}
@@ -129,7 +142,7 @@ GIFTParser.prototype.contenuQuestion = function(input) {
 	let type;
 	if (reponses) {
 		reponses = reponses[0].split('{').join('').split('}').join('');
-		texte = texte.replace('{', '___').replace('}', '');
+		texte = texte.replace('{', '').replace('}', '');
 		texte = texte.replace(reponses, '');
 		reponses = reponses.split('\r\n').join('').split('\n').join('').split('  ').join('');
 
