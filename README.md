@@ -9,9 +9,9 @@ Utilitaire en ligne de commande pour la création et la gestion d'examens au for
 - [Utilisation](#utilisation)
 - [Fonctionnalités](#fonctionnalités)
 - [Tests](#tests)
-- [Structure du projet](#structure-du-projet)
-- [Écarts au cahier des charges](#écarts-au-cahier-des-charges)
-- [Équipe](#équipe)
+- [Équipe en charge du projet](#équipe-en-charge-du-projet)
+- [Equipe commanditaire](#equipe-commanditaire)
+- [Licence](#licence)
 
 ---
 
@@ -34,7 +34,7 @@ Le format GIFT (General Import Format Technology) est un standard pour l'importa
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prérequis
 
@@ -57,7 +57,8 @@ npm --version
 1. **Cloner le projet**
 
 ```bash
-git clone https://github.com/votre-equipe/projet-gift.git
+git clone https://github.com/Antoo4/GL02_fork
+cd GL02_fork
 ```
 
 2. **Installer les dépendances**
@@ -82,7 +83,7 @@ Si l'installation est réussie, vous devriez voir l'aide du programme.
 
 ---
 
-## 📖 Utilisation
+## Utilisation
 
 ### Commandes disponibles
 
@@ -202,7 +203,7 @@ Q2 : La Terre est plate? | Réponse : Vrai -> Incorrect (Bonne réponse : 'Faux'
 
 ---
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
 ### Implémentées
 
@@ -211,7 +212,7 @@ Q2 : La Terre est plate? | Réponse : Vrai -> Incorrect (Bonne réponse : 'Faux'
 | EF01 | Rechercher des questions | Implémenté | `caporalCli.js` |
 | EF02 | Visualiser une question | Implémenté | `caporalCli.js` |
 | EF03 | Sélectionner des questions | Implémenté | `src/services/selectionner.js` |
-| EF05 | Générer fichier VCard | Implémenté | `caporalCli(1).js` |
+| EF05 | Générer fichier VCard | Implémenté | `caporalCli.js` |
 | EF06 | Simuler un examen | Implémenté | `SimulateExam.js` |
 | EF07 | Indexer les questions | Implémenté | `GIFTParser.js` |
 | EF04 | Générer fichier GIFT | Implémenté | Intégration avec EF03 |
@@ -313,7 +314,7 @@ Ce fichier est idéal pour :
 - Voir des exemples de syntaxe GIFT avancée
 - Comprendre le format HTML dans GIFT
 
-#### 2. **Structure de la classe Question**
+#### **Structure de la classe Question**
 
 **Cahier des charges :** Spécification algébrique avec opérations complexes  
 **Implémentation :** Classe JavaScript simplifiée
@@ -331,7 +332,7 @@ var Question = function (id, titre, type, enonce, reponses) {
 
 **Justification :** La version simplifiée répond aux besoins fonctionnels tout en étant plus maintenable. Les opérations complexes (ChangerTitre, RemplacerRéponse, etc.) peuvent être ajoutées si nécessaire.
 
-#### 3. **Parser GIFT : Implémentation progressive**
+#### **Parser GIFT : Implémentation progressive**
 
 **Cahier des charges :** Support complet de tous les types de questions GIFT  
 **Implémentation actuelle :** 
@@ -344,7 +345,7 @@ var Question = function (id, titre, type, enonce, reponses) {
 
 **Justification :** Développement itératif pour assurer la qualité. Les types manquants seront ajoutés dans les prochaines versions.
 
-#### 4. **Indexation (EF07)**
+#### **Indexation (EF07)**
 
 **Cahier des charges :** Indexation avec attribution d'IDs uniques  
 **Implémentation :** IDs séquentiels auto-incrémentés
@@ -396,7 +397,7 @@ npm install --production
 
 ---
 
-## 🐛 Dépannage
+## Dépannage
 
 ### Problème : "Cannot find module"
 
@@ -445,7 +446,7 @@ chmod +x caporalCli.js
 
 ---
 
-## Équipe
+## Équipe en charge du projet
 
 ### Développeurs
 
@@ -455,13 +456,29 @@ EWENCZYK Gabriel
 FATHALLAH Yesmine
 Mohamad FAWAZ
 
-## 📄 Licence
+---
 
-Projet étudiant - 2025 - Tous droits réservés
+## Equipe commanditaire
+
+SRYEM - Service de l'Éducation de la République de Sealand
+
+### Membres du SRYEM
+
+ANTOINE Nicolas
+CREMONA Tristan
+JACROT Antonin
+CORDIER Baptiste
+BARBE Jules
 
 ---
 
-## 📞 Contact et support
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+## Contact et support
 
 Pour toute question ou problème :
 - **Issues GitHub :** Ouvrir une issue sur le dépôt
@@ -506,5 +523,5 @@ Voir le dossier `examples/` (à créer) pour des exemples de fichiers GIFT avec 
 
 ---
 
-**Dernière mise à jour :** Décembre 2024  
-**Version du document :** 1.0
+**Dernière mise à jour :** Janvier 2026
+**Version du document :** 1.1
