@@ -38,17 +38,15 @@ function generateGiftFile(filename) {
 
     for (const q of questions) {
         const titre = q.titre ? `::${q.titre}:: ` : "";
-        lines.push(titre + q.enonce);
-
-        // Build True/False options
-        lines.push("{");
         const correct = q.bonnesReponses[0]; // T or F
         const wrong = correct === "T" ? "F" : "T";
-        lines.push(`=${correct}`);
-        lines.push(`~${wrong}`);
-        lines.push("}\n");
+
+        // Correction : Formatage compact sur une seule ligne
+        // Résultat attendu : ::Titre:: Énoncé {=T ~F}
+        lines.push(`${titre}${q.enonce} {=${correct} ~${wrong}}`);
     }
 
+    // On joint avec un seul saut de ligne entre chaque question
     fs.writeFileSync(filename, lines.join("\n"), 'utf8');
     console.log("GIFT file generated:", filename);
     return filename;
